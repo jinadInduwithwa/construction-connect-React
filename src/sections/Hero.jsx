@@ -38,7 +38,7 @@ const Hero = () => {
   useEffect(() => {
     const interval = setInterval(() => {
       setCurrentSlide((prev) => (prev + 1) % slides.length);
-    }, 5000); // 5 seconds per slide
+    }, 10000); // 5 seconds per slide
 
     return () => clearInterval(interval); // Cleanup interval on unmount
   }, [slides.length]);
