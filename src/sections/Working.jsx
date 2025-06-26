@@ -1,57 +1,64 @@
 import React from 'react';
-import {motion} from 'framer-motion'
-import { slideUpVariants , zoomInVariants } from './animation';
-import { allservices, planning } from '../export';
+import { motion } from 'framer-motion';
+import { slideUpVariants, zoomInVariants } from './animation';
+import { planning } from '../export';
+
 const Working = () => {
-    return (
-        <div id='working' className='w-full bg-white'>
+  return (
+    <div id="working" className="w-full" style={{ backgroundColor: '#FFFFFF' }}>
+      <motion.div
+        initial="hidden"
+        whileInView="visible"
+        variants={slideUpVariants}
+        className="lg:w-[80%] w-[90%] m-auto py-16 flex flex-col justify-between items-center gap-6"
+      >
+        <motion.h3
+          variants={slideUpVariants}
+          className="text-[#F4A261] text-xl lg:text-2xl uppercase"
+        >
+          Step by Step
+        </motion.h3>
+        <motion.h2
+          variants={slideUpVariants}
+          className="uppercase text-[#2B3A55] text-4xl lg:text-5xl font-bold text-center"
+        >
+          How It Works
+        </motion.h2>
+        <motion.div
+          variants={zoomInVariants}
+          className="w-[120px] h-[6px] bg-[#F4A261]"
+        ></motion.div>
+        <motion.div
+          initial="hidden"
+          whileInView="visible"
+          variants={zoomInVariants}
+          className="w-full grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 mt-8 justify-items-center"
+          role="region"
+          aria-labelledby="working-heading"
+        >
+          {planning.map((item, index) => (
             <motion.div
-            initial="hidden"
-            whileInView="visible"
-            variants={slideUpVariants}
-            className='lg:w-[80%] w-[90%] m-auto py-[60px] flex flex-col justify-between items-center gap-[20px]'
-
+              key={index}
+              variants={zoomInVariants}
+              className="flex flex-col justify-between items-center gap-4 p-6 bg-white rounded-md transition-shadow duration-300 border-2 border-[#F4A261] w-full max-w-xs min-h-[300px]"
             >
-                <motion.h3
-                variants={slideUpVariants}
-                className='text-yellow-500 text-2xl uppercase'
-                >
-                    Step by Step
-                </motion.h3>
-                <motion.h2
-                variants={slideUpVariants}
-                className='uppercase text-black text-5xl font-bold text-center'
-                >How It's Working</motion.h2>
-                <motion.div
-                variants={zoomInVariants}
-                className='w-[120px] h-[6px] bg-yellow-500'
-                >
-                </motion.div>
-
-                <motion.div
-                initial='hidden'
-                whileInView='visible'
-                variants={zoomInVariants}
-                className='w-full grid lg:grid-cols-4 grid-cols-1 justify-center
-                gap-[20px] items-start mt-[30px]'
-                >
-                    {
-                        planning.map((item,index) =>(
-                            <div key={index} className='flex flex-col justify-center items-center gap-5 border-2 border-yellow-500 rounded-md p-6'>
-                                <div>
-                                <item.icon className='size-[80px] bg-yellow-500 hover:bg-black hover:fill-white p-4 rounded-full cursor-pointer'/>
-                                </div>
-                                <h1 className='text-2xl font-bold uppercase'>{item.title}</h1>
-                                <p className='text-[20px] text-center text-gray-600'>{item.about}</p>
-                                </div>
-                        ))
-                    }
-
-                </motion.div>
-
+              <div>
+                <item.icon
+                  className="w-[60px] h-[60px] bg-[#F4A261] hover:bg-[#2B3A55] fill-[#2B3A55] hover:fill-[#F9F7F3] p-3 rounded-full cursor-pointer transition-colors duration-300"
+                />
+              </div>
+              <h3 className="text-lg lg:text-xl font-bold text-[#2B3A55] uppercase text-center">
+                {item.title}
+              </h3>
+              <p className="text-[#A0AEC0] text-sm lg:text-base text-center">
+                {item.about}
+              </p>
             </motion.div>
-        </div>
-    );
+          ))}
+        </motion.div>
+      </motion.div>
+    </div>
+  );
 };
 
 export default Working;
