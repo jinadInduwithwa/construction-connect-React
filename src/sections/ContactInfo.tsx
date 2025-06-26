@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
-import { COLORS, CONTACT_INFO } from '../constant/constants'; // Adjust path as needed
+import { motion } from 'framer-motion';
+import { slideUpVariants } from './animation';
 
 const ContactInfo = () => {
   const [isScrolled, setIsScrolled] = useState(false);
@@ -14,33 +15,40 @@ const ContactInfo = () => {
   }, []);
 
   return (
-    <div
-      className={`hidden sm:block w-full font-Mainfront fixed top-0 z-50 transition-colors duration-300 ${
-        isScrolled ? `bg-[${COLORS.BACKGROUND_CONTACT}]` : 'bg-transparent'
+    <motion.div
+      initial="hidden"
+      whileInView="visible"
+      variants={slideUpVariants}
+      className={`hidden sm:block w-full font-sans fixed top-0 z-50 transition-all duration-300 ${
+        isScrolled ? 'bg-[#F9F7F3] shadow-sm' : 'bg-transparent'
       }`}
+      role="complementary"
+      aria-label="Contact Information"
     >
-      <div className="flex flex-row justify-start px-[56px] py-1 w-full max-w-[1920px] mx-auto">
-        <div className="flex flex-wrap justify-start items-center gap-[12px]">
+      <div className="lg:w-[80%] w-[90%] mx-auto px-6 py-2">
+        <div className="flex flex-row justify-start items-center gap-4">
           <div className="flex items-center gap-2">
             <a
-              href={CONTACT_INFO.EMAIL_HREF}
-              className={`text-xs font-medium text-[${COLORS.TEXT_LIGHT}] font-PlusSans cursor-pointer hover:underline`}
+              href="mailto:info@aurorabuilders.com"
+              className="text-sm lg:text-base text-[#2B3A55] font-medium hover:text-[#F4A261] transition-colors"
+              aria-label="Email us at info@aurorabuilders.com"
             >
-              {CONTACT_INFO.EMAIL}
+              info@aurorabuilders.com
             </a>
           </div>
-          <div className={`text-[${COLORS.TEXT_LIGHT}]`}>|</div>
+          <div className="text-[#A0AEC0] text-sm lg:text-base">|</div>
           <div className="flex items-center gap-2">
             <a
-              href={CONTACT_INFO.PHONE_HREF}
-              className={`text-xs font-medium text-[${COLORS.TEXT_LIGHT}] font-PlusSans cursor-pointer hover:underline`}
+              href="tel:+12065550123"
+              className="text-sm lg:text-base text-[#2B3A55] font-medium hover:text-[#F4A261] transition-colors"
+              aria-label="Call us at +1 (206) 555-0123"
             >
-              {CONTACT_INFO.PHONE}
+              +1 (206) 555-0123
             </a>
           </div>
         </div>
       </div>
-    </div>
+    </motion.div>
   );
 };
 

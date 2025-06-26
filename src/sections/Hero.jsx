@@ -1,44 +1,40 @@
 import React, { useState, useEffect } from 'react';
 import { motion } from 'framer-motion';
 import { slideUpVariants, zoomInVariants } from './animation';
-import backgroundImg1 from '../assets/hero-section/background1.webp'; // Replace with your first background image
-import backgroundImg2 from '../assets/hero-section/background2.webp'; // Replace with your second background image
-import backgroundImg3 from '../assets/hero-section/background3.webp'; // Replace with your third background image
+import constructionVideo from '../assets/hero-section/construction-video.mp4'; // Import video
+import fallbackImage from '../assets/hero-section/fallback-image.jpg'; // Import fallback image
 
 const Hero = () => {
-  // Array of background images and corresponding text content
+  // Array of slide text content
   const slides = [
     {
-      background: backgroundImg1,
-      subheading: 'WE ARE BUILDERS',
-      heading: 'we will build your dream',
+      subheading: 'BUILDING EXCELLENCE',
+      heading: 'We Construct Your Dreams',
       description:
-        'Whether you’re dreaming of a new structure or enhancing an existing space, Sumon Structures is here to make it happen. With unmatched expertise and dedication, we ensure a smooth building experience from start to finish.',
+        'At Aurora Builders, we turn your vision into reality with 25 years of expertise. From residential to commercial projects, we deliver unmatched quality and precision.',
     },
     {
-      background: backgroundImg2,
-      subheading: 'CRAFTING YOUR VISION',
-      heading: 'we shape your future',
+      subheading: 'INNOVATIVE SOLUTIONS',
+      heading: 'Shaping Your Future',
       description:
-        'Transform your ideas into reality with Sumon Structures. Our team delivers innovative solutions tailored to your needs, ensuring quality and precision in every project.',
+        'Aurora Builders crafts innovative, sustainable structures tailored to your needs. Let us build spaces that inspire and endure for generations.',
     },
     {
-      background: backgroundImg3,
-      subheading: 'DESIGN WITH PURPOSE',
-      heading: 'we create lasting spaces',
+      subheading: 'DESIGN WITH IMPACT',
+      heading: 'Creating Timeless Spaces',
       description:
-        'From concept to completion, Sumon Structures designs spaces that inspire. Let us build environments that reflect your vision and stand the test of time.',
+        'From concept to completion, Aurora Builders designs environments that reflect your vision. Trust us to build spaces that stand the test of time.',
     },
   ];
 
   // State to track current slide
   const [currentSlide, setCurrentSlide] = useState(0);
 
-  // Effect to cycle through slides every 5 seconds
+  // Effect to cycle through slides every 8 seconds
   useEffect(() => {
     const interval = setInterval(() => {
       setCurrentSlide((prev) => (prev + 1) % slides.length);
-    }, 10000); // 5 seconds per slide
+    }, 8000); // 8 seconds per slide
 
     return () => clearInterval(interval); // Cleanup interval on unmount
   }, [slides.length]);
@@ -46,9 +42,20 @@ const Hero = () => {
   return (
     <div
       id="hero"
-      className="relative bg-black w-full lg:h-[700px] h-fit m-auto pt-[60px] md:pt-[100px] lg:pt-[0px] lg:px-[150px] md:px-[40px] px-[20px] flex justify-center items-center flex-col lg:gap-5 gap-[50px] bg-cover bg-center transition-all duration-1000"
-      style={{ backgroundImage: `url(${slides[currentSlide].background})` }}
+      className="relative w-full lg:h-[700px] h-fit m-auto pt-[60px] md:pt-[100px] lg:pt-0 lg:px-16 md:px-10 px-5 flex justify-center items-center flex-col lg:gap-5 gap-10 bg-cover bg-center"
     >
+      {/* Video Background */}
+      <video
+        className="absolute inset-0 w-full h-full object-cover z-0"
+        autoPlay
+        loop
+        muted
+        playsInline
+        aria-hidden="true"
+      >
+        <source src={constructionVideo} type="video/mp4" />
+        <img src={fallbackImage} alt="Fallback construction image" className="w-full h-full object-cover" />
+      </video>
       {/* Black shadow overlay */}
       <div className="absolute inset-0 bg-black opacity-50 z-10"></div>
       <motion.div
@@ -56,38 +63,45 @@ const Hero = () => {
         initial="hidden"
         whileInView="visible"
         variants={slideUpVariants}
-        className="relative lg:w-[80%] md:w-[70%] w-full flex flex-col justify-center items-center lg:gap-8 gap-4 z-20 mx-auto"
+        className="relative lg:w-[80%] w-[90%] flex flex-col justify-center items-center lg:gap-8 gap-4 z-20 mx-auto"
+        role="banner"
+        aria-label="Hero Section"
       >
-        <motion.h1 variants={slideUpVariants} className="text-[#FEBA17] text-lg md:text-2xl text-center">
+        <motion.h1
+          variants={slideUpVariants}
+          className="text-[#F4A261] text-lg md:text-xl lg:text-2xl text-center uppercase"
+        >
           {slides[currentSlide].subheading}
         </motion.h1>
         <motion.h1
           variants={slideUpVariants}
-          className="text-[#FFFFFF] uppercase text-[30px] md:text-[40px] lg:text-[50px] font-bold text-center"
+          className="text-[#FFFFFF] uppercase text-3xl md:text-4xl lg:text-5xl font-bold text-center"
         >
           {slides[currentSlide].heading}
         </motion.h1>
-        <div className="w-[120px] h-[6px] bg-[#FEBA17] mx-auto"></div>
-        <p className="text-[#FFFFFF] text-[16px] md:text-[18px] lg:text-[20px] text-center">
+        <div className="w-[120px] h-[6px] bg-[#F4A261] mx-auto"></div>
+        <p className="text-[#FFFFFF] text-sm md:text-base lg:text-lg text-center">
           {slides[currentSlide].description}
         </p>
         <motion.div
           initial="hidden"
           whileInView="visible"
           variants={zoomInVariants}
-          className="flex justify-center items-center gap-5"
+          className="flex justify-center items-center gap-4"
         >
           <motion.button
             variants={zoomInVariants}
-            className="bg-[#FEBA17] hover:bg-[#FFFFFF] hover:text-[#1a2a44] px-6 md:px-10 py-2 md:py-3 rounded-lg text-sm md:text-base text-[#1a2a44] font-bold"
+            className="bg-[#F4A261] hover:bg-[#E89B4E] text-[#2B3A55] px-6 md:px-8 py-2 md:py-3 rounded-lg text-sm md:text-base font-bold transition-colors duration-300"
+            aria-label="Read more about Aurora Builders"
           >
-            READ MORE
+            Read More
           </motion.button>
           <motion.button
             variants={zoomInVariants}
-            className="border-[#FFFFFF] hover:border-[#FEBA17] hover:text-[#FEBA17] border-2 px-6 md:px-10 py-2 md:py-3 rounded-lg text-sm md:text-base text-[#FFFFFF] font-bold"
+            className="border-2 border-[#FFFFFF] hover:border-[#F4A261] hover:text-[#F4A261] text-[#FFFFFF] px-6 md:px-8 py-2 md:py-3 rounded-lg text-sm md:text-base font-bold transition-colors duration-300"
+            aria-label="Contact Aurora Builders"
           >
-            REACH US
+            Reach Us
           </motion.button>
         </motion.div>
       </motion.div>

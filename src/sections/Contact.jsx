@@ -108,13 +108,13 @@ const Contact = () => {
           </p>
         </motion.div>
 
-        <motion.div
+        <div
           initial="hidden"
           whileInView="visible"
           variants={slideUpVariants}
           className="lg:w-[40%] w-full flex flex-col justify-center items-start gap-6"
         >
-          <motion.form
+          <form
             initial="hidden"
             whileInView="visible"
             variants={zoomInVariants}
@@ -266,24 +266,24 @@ const Contact = () => {
                 {formStatus}
               </p>
             )}
-            <motion.button
+            <button
               variants={zoomInVariants}
               type="submit"
               className="bg-[#F4A261] hover:bg-[#E89B4E] text-[#2B3A55] font-bold py-3 px-6 rounded-lg w-full transition-colors duration-300"
               aria-label="Submit booking form"
             >
               Submit Booking
-            </motion.button>
-            <motion.button
+            </button>
+            <button
               variants={zoomInVariants}
               onClick={handleCallClick}
               className="bg-[#2B3A55] hover:bg-[#1A263A] text-[#F9F7F3] font-bold py-3 px-6 rounded-lg w-full transition-colors duration-300"
               aria-label="Call us directly"
             >
               Call Now
-            </motion.button>
-          </motion.form>
-        </motion.div>
+            </button>
+          </form>
+        </div>
       </div>
     </div>
   );

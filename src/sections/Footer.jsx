@@ -6,23 +6,17 @@ import {
   FaLinkedinIn,
 } from 'react-icons/fa';
 import logo from '../assets/logo1.png';
-import { motion } from 'framer-motion';
-import { slideUpVariants, zoomInVariants } from './animation';
 
 function Footer() {
   return (
     <footer id="footer" className="w-full">
       <div className="lg:w-[80%] w-[90%] mx-auto px-4 py-8">
         {/* Top Section */}
-        <motion.div
-          initial="hidden"
-          whileInView="visible"
-          variants={slideUpVariants}
+        <div
           className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6"
         >
           {/* Logo and Description */}
-          <motion.div
-            variants={zoomInVariants}
+          <div
             className="space-y-4"
             role="region"
             aria-label="Company Information"
@@ -31,10 +25,10 @@ function Footer() {
             <p className="text-[#A0AEC0] text-sm lg:text-base max-w-[300px]">
               Building your vision with 25 years of expertise in sustainable and innovative construction solutions.
             </p>
-          </motion.div>
+          </div>
 
           {/* Quick Links */}
-          <motion.div variants={zoomInVariants}>
+          <div>
             <h3 className="text-lg lg:text-xl font-bold text-white mb-4">Quick Links</h3>
             <ul className="space-y-2">
               <li>
@@ -74,10 +68,10 @@ function Footer() {
                 </a>
               </li>
             </ul>
-          </motion.div>
+          </div>
 
           {/* Contact Info */}
-          <motion.div variants={zoomInVariants}>
+          <div>
             <h3 className="text-lg lg:text-xl font-bold text-white mb-4">Contact Us</h3>
             <ul className="space-y-2 text-[#A0AEC0] text-sm lg:text-base">
               <li>123 Builder Street</li>
@@ -93,10 +87,10 @@ function Footer() {
                 </a>
               </li>
             </ul>
-          </motion.div>
+          </div>
 
           {/* Social Media */}
-          <motion.div variants={zoomInVariants}>
+          <div>
             <h3 className="text-lg lg:text-xl font-bold text-white mb-4">Follow Us</h3>
             <div className="flex space-x-4">
               <a
@@ -136,14 +130,11 @@ function Footer() {
                 <FaLinkedinIn className="w-5 h-5 text-[#2B3A55]" />
               </a>
             </div>
-          </motion.div>
-        </motion.div>
+          </div>
+        </div>
 
         {/* Bottom Section */}
-        <motion.div
-          initial="hidden"
-          whileInView="visible"
-          variants={slideUpVariants}
+        <div
           className="border-t border-[#A0AEC0]/20 mt-12 pt-8"
         >
           <div className="flex flex-col sm:flex-row justify-between items-center">
@@ -167,7 +158,7 @@ function Footer() {
               </a>
             </div>
           </div>
-        </motion.div>
+        </div>
       </div>
     </footer>
   );
