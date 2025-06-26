@@ -1,61 +1,72 @@
 import React from 'react';
-import {motion} from 'framer-motion'
-import { slideUpVariants , zoomInVariants } from './animation';
-import {clients } from '../export';
+import { motion } from 'framer-motion';
+import { slideUpVariants, zoomInVariants } from './animation';
+import { clients } from '../export';
 
-const Testmonials = () => {
-    return (
-        <div id='clients' className='w-full'>
+const Testimonials = () => {
+  return (
+    <div id="clients" className="w-full" >
+      <motion.div
+        initial="hidden"
+        whileInView="visible"
+        variants={slideUpVariants}
+        className="lg:w-[80%] w-[90%] m-auto py-16 flex flex-col justify-between items-center gap-6"
+      >
+        <motion.h3
+          variants={slideUpVariants}
+          className="text-[#F4A261] text-xl lg:text-2xl uppercase"
+        >
+          Testimonials
+        </motion.h3>
+        <motion.h2
+          variants={slideUpVariants}
+          className="uppercase text-white text-4xl lg:text-5xl font-bold text-center"
+          id="testimonials-heading"
+        >
+          What They Say About Us
+        </motion.h2>
+        <motion.div
+          variants={zoomInVariants}
+          className="w-[120px] h-[6px] bg-[#F4A261]"
+        ></motion.div>
+        <motion.div
+          initial="hidden"
+          whileInView="visible"
+          variants={zoomInVariants}
+          className="w-full grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 mt-8 justify-items-center"
+          role="region"
+          aria-labelledby="testimonials-heading"
+        >
+          {clients.map((client, index) => (
             <motion.div
-            initial="hidden"
-            whileInView="visible"
-            variants={slideUpVariants}
-            className='lg:w-[80%] w-[90%] m-auto py-[60px] flex flex-col justify-between items-center gap-[20px]'
-
+              key={index}
+              variants={zoomInVariants}
+              className="flex flex-col justify-between items-center gap-4 p-6 duration-300 w-full max-w-sm min-h-[400px]"
             >
-                <motion.h3
-                variants={slideUpVariants}
-                className='text-yellow-500 text-2xl uppercase'
-                >Testimonials
-                </motion.h3>
-                <motion.h2
-                variants={slideUpVariants}
-                className='uppercase text-white text-5xl font-bold text-center'
-                >WHAT THEY SAY ABOUT US</motion.h2>
-                <motion.div
-                variants={zoomInVariants}
-                className='w-[120px] h-[6px] bg-yellow-500'
-                >
-                </motion.div>
-
-                <motion.div
-                initial='hidden'
-                whileInView='visible'
-                variants={zoomInVariants}
-                className='lg:w-full w-[90%] grid lg:grid-cols-3 grid-cols-1 justify-center
-                gap-8 items-start mt-[30px]'
-                >
-                    {
-                        clients.map((client, index) => (
-                            <div key={index} className='flex flex-col justify-center items-center'>
-                                <div className='border-2 border-white hover:bg-yellow-500 pb-[100px] p-[30px]'>
-                                    <p className='text-white text-lg text-center italic'>{client.about}</p>
-                                </div>
-                                <div className='flex flex-col justify-center items-center gap-[5px]'>
-                                    <img src={client.image} alt={client.name} className='mt-[-50px]'/>
-                                    <h3 className='uppercase text-2xl font-bold text-white'>{client.name}</h3>
-                                    <h4 className='text-xl text-yellow-500'>{client.post}</h4>
-
-                                </div>
-                            </div>
-                        ))  
-                    }
-
-                </motion.div>
-
+              <div className="border-2 border-white rounded-md p-6 text-center flex-grow">
+                <p className="text-white text-sm lg:text-base italic">
+                  {client.about}
+                </p>
+              </div>
+              <div className="flex flex-col justify-center items-center gap-2 mt-[-60px]">
+                <img
+                  src={client.image}
+                  alt={`${client.name}'s photo`}
+                  className="w-[80px] h-[80px] rounded-full border-2 border-[#FFFFFF] object-cover"
+                />
+                <h3 className="uppercase text-lg lg:text-xl font-bold text-[#2B3A55]">
+                  {client.name}
+                </h3>
+                <h4 className="text-white text-sm lg:text-base">
+                  {client.post}
+                </h4>
+              </div>
             </motion.div>
-        </div>
-    );
+          ))}
+        </motion.div>
+      </motion.div>
+    </div>
+  );
 };
 
-export default Testmonials;
+export default Testimonials;
